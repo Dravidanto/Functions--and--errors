@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract PhotoelectricEffectSimulation {
+    bool public lightSourceOn;
+    uint256 public thresholdFrequency;
+    uint256 public emissionStartTime;
+    uint256 public numberOfEmittedElectrons;
+
+    modifier requireLightSourceOn() {
+        require(lightSourceOn, "Please turn on the light source");
+        _;
+    }
+
+    modifier assertThresholdFrequency() {
+        assert(thresholdFrequency >= 10);
+        _;
+    }
+
+    
+    modifier checkEnergyGenerated() {
+        if (numberOfEmittedElectrons >= 100000) {
+            revert("10 units of energy is generated");
+        }
+        _;
+    }
+
+    event LightSourceTurnedOn();
+    event EmissionStarted(uint256 startTime, uint256 duration);
+    event EnergyGenerated(uint256 numberOfElectrons);
+
+    function observePhotoelectricEffect() external requireLightSourceOn assertThresholdFrequency {
+        emit LightSourceTurnedOn();
+    }
+
+    function energyGenerated() external checkEnergyGenerated {
+        emit EnergyGenerated(numberOfEmittedElectrons);
+    }
+
+    function turnOnLightSource() external {
+        lightSourceOn = true;
+    }
+
+    function turnOffLightSource() external {
+        lightSourceOn = false;
+    }
+
+    function setThresholdFrequency(uint256 frequency) external {
+        thresholdFrequency = frequency;
+    }
+
+    function setNumberOfEmittedElectrons(uint256 count) external {
+        numberOfEmittedElectrons = count;
+    }
+}
