@@ -33,6 +33,10 @@ This Solidity smart contract simulates the photoelectric effect, a phenomenon in
 5. `setThresholdFrequency`: External function to set the threshold frequency.
 6. `setNumberOfEmittedElectrons`: External function to set the number of emitted electrons.
 
+## Contact
+
+antonyanto9535@gmail.com
+
 ## License
 
 This smart contract is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
